@@ -1,20 +1,70 @@
-function add(a, b) {
-    return a + b;
+
+let currentInput;
+let lastInput;
+let operator;
+
+function add() {
+    if (!currentInput)
+        return "No input";
+    operator = "add";
+    storeCurrentInput();
 }
 
-function subtract(a, b) {
-    return a - b;
+function subtract() {
+    if (!currentInput)
+        return "No input";
+    operator = "subtract";
+    storeCurrentInput();
 }
 
-function multiply(a, b) {
-    return a * b;
+function multiply() {
+    if (!currentInput)
+        return "No input";
+    operator = "multiply";
+    storeCurrentInput();
 }
 
-function divide(a, b) {
-    return a / b;
+function divide() {
+    if (!currentInput)
+        return "No input";
+    operator = "divide";
+    storeCurrentInput();
 }
 
-console.log(add(2,2));
-console.log(subtract(2,2));
-console.log(multiply(3,3));
-console.log(divide(3,3));
+function operate(a, b) {
+    switch (operator) {
+        case "divide":
+            return a / b;
+        case "multiply":
+            return a * b;
+        case "subtract":
+            return a - b;
+        case "add":
+            return a + b;       
+    }
+}
+
+function storeCurrentInput() {
+    if (!lastInput) {
+        lastInput = currentInput;
+        currentInput = null;
+    }   
+}
+
+/*
+    The steps are like so
+    - Put in a currentInput
+    - Press an operator
+        - store the currentInput as the lastInput
+        - clear the currentInput
+    - type another currentInput
+
+    A.
+    - press equal
+        - currentInput = operate()
+
+    B.
+    - press another operator
+        - lastInput = operate()
+        - currentInput = null
+*/
