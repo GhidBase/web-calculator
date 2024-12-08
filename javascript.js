@@ -2,6 +2,7 @@
 let currentInput = 0;
 let lastInput = null;
 let operator = null;
+let screen = document.querySelector(".screen");
 
 function add() {
     operator = "add";
@@ -17,6 +18,10 @@ function multiply() {
 
 function divide() {
     operator = "divide";
+}
+
+function updateScreen(text) {
+    screen.textContent = text;
 }
 
 function operate() {
@@ -41,6 +46,7 @@ function numberPress(button) {
         console.clear();
         console.log("lastInput: " + lastInput);
         console.log("currentInput: " + currentInput);
+        updateScreen(currentInput);
         return;
     }
 
@@ -49,6 +55,7 @@ function numberPress(button) {
         console.clear();
         console.log("lastInput: " + lastInput);
         console.log("currentInput: " + currentInput);
+        updateScreen(currentInput);
 }
 
 function operatorPressed(button) {
@@ -82,6 +89,7 @@ function operatorPressed(button) {
     currentInput = operate();
 
     lastInput = currentInput;
+    updateScreen(currentInput);
     currentInput = 0;
     operator = operatorInput;
 

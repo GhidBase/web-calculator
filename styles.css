@@ -35,11 +35,17 @@ body {
     aspect-ratio: 2.05/1;
 }
 .calculator .wide.screen{
+    display: flex;
     flex: 1 0 98%;
     aspect-ratio: 4/1;
-    background-color: rgb(61, 61, 61);
+    background-color: rgb(151, 151, 151);
     border-radius: 8px;
     border: 2px solid black;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+    padding: 12px;
+    box-sizing: border-box;
 }
 
 .red {
