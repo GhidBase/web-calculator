@@ -18,6 +18,7 @@ body {
 }
 
 .button {
+    font-size: 42px;
     display: flex;
     flex: 1 0 22%;
     border-radius: 8px;
@@ -25,6 +26,8 @@ body {
     background-color: rgb(155, 155, 155);
     align-items: center;
     justify-content: center;
+    border: 2px solid black;
+    box-sizing: border-box;
 }
 .calculator .wide {
     flex: 1 0 47%;
@@ -35,4 +38,8 @@ body {
     aspect-ratio: 4/1;
     background-color: rgb(61, 61, 61);
     border-radius: 8px;
+}
+
+.red {
+    background-color: rgb(136, 46, 46);
 }
