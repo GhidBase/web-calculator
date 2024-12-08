@@ -55,7 +55,18 @@ function operatorPressed(button) {
     let operatorInput = button.textContent;
     if (currentInput == null) {
         return;
-    }        
+    }
+    
+    if (operatorInput == "AC") {
+        lastInput = null;
+        currentInput = 0;
+        operator = null;
+        console.clear();
+        console.log("operator pressed " + button.textContent)
+        console.log("lastInput: " + lastInput);
+        console.log("currentInput: " + currentInput);
+        return;
+    }
 
     if (lastInput == null) {
         operator = operatorInput;
