@@ -36,7 +36,7 @@ function operate() {
         case "-":
             return a - b;
         case "+":
-            return a + b;  
+            return a + b;
     }
 }
 
@@ -51,6 +51,11 @@ function numberPress(button) {
         currentInput += number.toString();
         currentInput = currentInput;
         updateScreen();
+}
+
+function toggleNegative() {
+    currentInput *= -1;
+    updateScreen();
 }
 
 function operatorPressed(button) {
@@ -90,5 +95,6 @@ function operatorPressed(button) {
         currentInput = lastInput;
         lastInput = null;
     }
+    
     updateScreen();
 }
