@@ -20,8 +20,9 @@ function divide() {
     operator = "divide";
 }
 
-function updateScreen(text) {
-    screen.textContent = text;
+function updateScreen() {
+    let displayText = lastInput == null ? currentInput : lastInput + " " + operator + " " + currentInput
+    screen.textContent = displayText;
 }
 
 function operate() {
@@ -41,26 +42,25 @@ function operate() {
 
 function numberPress(button) {
     let number = button.textContent;
-    if(currentInput == 0) {
+    if(!currentInput) {
         currentInput = number;
-        console.clear();
-        console.log("lastInput: " + lastInput);
-        console.log("currentInput: " + currentInput);
-        updateScreen(currentInput);
+        updateScreen();
         return;
     }
 
         currentInput += number.toString();
-        currentInput = +currentInput;
-        console.clear();
-        console.log("lastInput: " + lastInput);
-        console.log("currentInput: " + currentInput);
-        updateScreen(currentInput);
+        currentInput = currentInput;
+        updateScreen();
 }
 
 function operatorPressed(button) {
     let operatorInput = button.textContent;
+
+    if (operatorInput == "=" && !operator) {
+        return;
+    }
     if (currentInput == null) {
+        updateScreen();
         return;
     }
     
@@ -68,10 +68,7 @@ function operatorPressed(button) {
         lastInput = null;
         currentInput = 0;
         operator = null;
-        console.clear();
-        console.log("operator pressed " + button.textContent)
-        console.log("lastInput: " + lastInput);
-        console.log("currentInput: " + currentInput);
+        updateScreen();
         return;
     }
 
@@ -79,23 +76,19 @@ function operatorPressed(button) {
         operator = operatorInput;
         lastInput = currentInput;
         currentInput = 0;
-        console.clear();
-        console.log("operator pressed " + button.textContent)
-        console.log("lastInput: " + lastInput);
-        console.log("currentInput: " + currentInput);
+        updateScreen();
         return;
     }
 
     currentInput = operate();
-
     lastInput = currentInput;
-    updateScreen(currentInput);
     currentInput = 0;
     operator = operatorInput;
 
-
-    console.clear();
-    console.log("operator pressed " + button.textContent)
-    console.log("lastInput: " + lastInput);
-    console.log("currentInput: " + currentInput);
+    if (operatorInput == "=") {
+        operator = null;
+        currentInput = lastInput;
+        lastInput = null;
+    }
+    updateScreen();
 }
