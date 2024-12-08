@@ -37,6 +37,8 @@ function operate() {
             return a - b;
         case "+":
             return a + b;
+        case "%":
+            return a % b;
     }
 }
 
