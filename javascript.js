@@ -5,25 +5,23 @@ let operator;
 
 function add() {
     operator = "add";
-    storeCurrentInput();
 }
 
 function subtract() {
     operator = "subtract";
-    storeCurrentInput();
 }
 
 function multiply() {
     operator = "multiply";
-    storeCurrentInput();
 }
 
 function divide() {
     operator = "divide";
-    storeCurrentInput();
 }
 
-function operate(a, b) {
+function operate() {
+    let a = lastInput;
+    let b = currentInput;
     switch (operator) {
         case "divide":
             return a / b;
@@ -32,16 +30,42 @@ function operate(a, b) {
         case "subtract":
             return a - b;
         case "add":
-            return a + b;       
+            return a + b;  
     }
 }
 
-function storeCurrentInput() {
-    if (!lastInput) {
-        lastInput = currentInput;
-        currentInput = null;
-    }   
+function numberPress(number) {
+    if(operator == null) {
+        currentInput += number.toString();
+        return;
+    }
+
+    if(operator == "=") {
+        lastInput = null;
+        operator = null;
+        currentInput = number;
+        return;
+    }
+
+    lastInput = currentInput;
+    currentInput = number;
 }
+
+function operatorPressed(operatorInput) {
+    if (currentInput == null) {
+        return;
+    }        
+
+    if (lastInput == null) {
+        operator = operatorInput;
+        return;
+    }
+
+    currentInput = operate();
+
+    operator = operatorInput;
+}
+
 
 /*
     The steps are like so
@@ -75,7 +99,8 @@ function storeCurrentInput() {
             to the pressed number
 
             If the a number is pressed while the operator is set to "=", null the
-            previous number, set the current number to the new one, and set operator to null
+            previous number, null the operator, set the current number to the pressed
+            number
         
         HANDLING OPERATORS
             If an operator is pressed while there is no previous input but there is
